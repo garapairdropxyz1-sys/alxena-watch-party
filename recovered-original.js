@@ -565,34 +565,6 @@ Error generating stack: `+s.message+`
 }
 
 function g4({activeVideo:n,isPlaying:i,currentTime:l,speed:r,isHost:d,reactions:f,onSync:h,onSendReaction:p}){const x=E.useRef(null),g=E.useRef(null),[y,v]=E.useState(i),[k,A]=E.useState(1),[T,V]=E.useState(!1),[M,H]=E.useState(0),[Q,q]=E.useState(0),[K,ne]=E.useState(!1),[oe,F]=E.useState(r),[J,Z]=E.useState(!1),[$,ce]=E.useState(null),[I,je]=E.useState(!1),[Te,Se]=E.useState(""),[j,D]=E.useState("id"),[L,W]=E.useState(!1);p4({onTogglePlay:()=>U(),onToggleMute:()=>he(),onToggleFullscreen:()=>Ne()}),E.useEffect(()=>{v(i),x.current&&(i?x.current.play().catch(()=>{}):x.current.pause(),Math.abs(x.current.currentTime-l)>1.5&&(x.current.currentTime=l))},[i,l]),E.useEffect(()=>{F(r),x.current&&(x.current.playbackRate=r)},[r]),
-E.useEffect(()=>{
-  var p=window.__alxenaYTPlayer;
-  if(!p || !p.getPlayerState)return;
-
-  window.__alxenaYTApplyingRemote=true;
-
-  try{
-    p.setPlaybackRate(Number(r||1));
-
-    var now=Number(l||0);
-    var current=p.getCurrentTime();
-
-    if(Math.abs(current-now)>1.2){
-      p.seekTo(now,true);
-    }
-
-    if(i){
-      p.playVideo();
-    }else{
-      p.pauseVideo();
-    }
-  }catch(e){}
-
-  setTimeout(function(){
-    window.__alxenaYTApplyingRemote=false;
-  },500);
-},[i,l,r,d]),
-
 E.useEffect(()=>{n&&n.source==="local"?n.url.startsWith("blob:")||n.url.startsWith("http")?ce(n.url):m4(()=>Promise.resolve().then(()=>T4),void 0).then(async({initDB:de})=>{const mt=(await de()).transaction("local_videos","readonly").objectStore("local_videos").get(n.url);mt.onsuccess=()=>{if(mt.result&&mt.result.data){const Mi=URL.createObjectURL(mt.result.data);ce(Mi)}}}):ce(null)},[n]);
 E.useEffect(()=>{
   if(!d)return;
