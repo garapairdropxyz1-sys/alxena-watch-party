@@ -193,6 +193,18 @@ export class AWPState {
       });
     }
 
+    if (method === "GET" && path === "/api/auth/profile") {
+      const email = new URL(request.url).searchParams.get("email");
+      const user = email ? data.users[email] : null;
+
+      if (!user) {
+        return response({ ok: false, error: "User not found" }, 404);
+      }
+
+      const { password, ...safeUser } = user;
+      return response({ ok: true, user: safeUser });
+    }
+
     if (method === "PUT" && path === "/api/auth/profile") {
       const body = await json(request);
       const email = body.email;
