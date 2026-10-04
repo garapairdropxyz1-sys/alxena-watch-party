@@ -7,7 +7,8 @@ function defaultRoom(roomId, data = {}) {
     id: roomId,
     name: data.name || `Lounge Alxena ${roomId}`,
     description: data.description || "Ruang santai Alxena 🌸",
-    hostId: data.hostId || null,
+    hostId: data.hostId || data.ownerId || null,
+    ownerId: data.ownerId || data.hostId || null,
     coHosts: [],
     settings: {
       maxUsers: 50,
@@ -192,6 +193,25 @@ export class AWPState {
       });
     }
 
+    if (method === "PUT" && path === "/api/auth/profile") {
+      const body = await json(request);
+      const email = body.email;
+      const user = data.users[email];
+
+      if (!user) return response({ ok: false, error: "User not found" }, 404);
+
+      if (body.username) user.username = String(body.username).trim();
+      if (body.avatar !== undefined) user.avatar = body.avatar;
+      if (body.bio !== undefined) user.bio = body.bio;
+      if (body.status !== undefined) user.status = body.status;
+
+      data.users[email] = user;
+      await this.save(data);
+
+      const { password, ...safeUser } = user;
+      return response({ ok: true, user: safeUser });
+    }
+
     const roomMatch = path.match(/^\/api\/rooms\/([^/]+)(?:\/(.*))?$/);
 
     if (roomMatch) {
@@ -217,6 +237,8 @@ export class AWPState {
           body.id ||
           crypto.randomUUID().replaceAll("-", "").slice(0, 8);
 
+        body.ownerId = body.ownerId || body.hostId || null;
+        body.hostId = body.hostId || body.ownerId || null;
         data.rooms[newRoomId] = defaultRoom(newRoomId, body);
 
         await this.save(data);
