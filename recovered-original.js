@@ -445,129 +445,15 @@ Error generating stack: `+s.message+`
  */function Cs(){const n=localStorage.getItem("alxena_local_rooms");if(n)try{return JSON.parse(n)}catch{return[]}return[]}function sn(n){const i=Cs(),l=i.findIndex(r=>r.id===n.id);l>=0?i[l]=n:i.push(n),localStorage.setItem("alxena_local_rooms",JSON.stringify(i))}function u4(n){const l=[{id:"lounge-cute",name:"Lounge Alxena 🌸",description:"Ruang santai utama untuk mengobrol dan mendengarkan musik santai bersama Alxena.",hostId:"system",coHosts:[],settings:{maxUsers:50,isPublic:!0,emoji:"🌸",color:"from-pink-400 to-rose-300",background:"pink-gradient",allowChat:!0,allowVoice:!0,allowCamera:!0,allowScreenShare:!0,allowPlaylist:!0,allowSkip:!0,allowUpload:!0},users:[],playlist:[{id:"yt-default-1",title:"Chill Lofi Beats to Watch Together 🎧",url:"https://www.youtube.com/watch?v=jfKfPfyJRdk",source:"youtube",duration:3600,addedBy:"Alxena",votes:[],thumbnail:"https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=150"}],currentVideoId:"yt-default-1",playbackState:{isPlaying:!1,currentTime:0,speed:1,lastUpdated:Date.now()},polls:[]},{id:"study-lofi",name:"Study Room & Ambient 📚",description:"Fokus belajar bersama dengan lagu latar lofi estetik dan visualisasi ruang santai.",hostId:"system",coHosts:[],settings:{maxUsers:20,isPublic:!0,emoji:"📚",color:"from-purple-400 to-indigo-300",background:"purple-gradient",allowChat:!0,allowVoice:!0,allowCamera:!1,allowScreenShare:!0,allowPlaylist:!1,allowSkip:!1,allowUpload:!1},users:[],playlist:[{id:"yt-study-2",title:"Coffee Shop Ambient Sounds & Jazz Music ☕",url:"https://www.youtube.com/watch?v=v9Z8v4mRPhk",source:"youtube",duration:7200,addedBy:"System",votes:[],thumbnail:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=150"}],currentVideoId:"yt-study-2",playbackState:{isPlaying:!1,currentTime:0,speed:1,lastUpdated:Date.now()},polls:[]}].find(d=>d.id===n);return l||Cs().find(d=>d.id===n)||null}function $c(n){const i=localStorage.getItem(`alxena_local_chats_${n}`);if(i)try{return JSON.parse(i)}catch{return[]}return[{id:"welcome-local",roomId:n,senderId:"system",senderName:"Alxena Pinky Bot 🌸",senderAvatar:"💖",text:"Selamat datang di Alxena Local Sandbox Watch Party! Server tidak merespons, jadi mode lokal estetik diaktifkan agar Anda tetap bisa nobar tanpa gangguan! ✨",timestamp:Date.now(),isPinned:!0}]}function c4(n,i){const l=$c(n);l.push(i),localStorage.setItem(`alxena_local_chats_${n}`,JSON.stringify(l))}function d4({currentUser:n}){const{navigate:i}=zt(),[l,r]=E.useState([]),[d,f]=E.useState(""),[h,p]=E.useState(!1),[x,g]=E.useState(!1),[y,v]=E.useState(""),[k,A]=E.useState(""),[T,V]=E.useState(""),[M,H]=E.useState(""),[Q,q]=E.useState(""),[K,ne]=E.useState(!0),[oe,F]=E.useState(10),[J,Z]=E.useState("🌸"),[$,ce]=E.useState("from-pink-400 to-rose-300"),[I,je]=E.useState(!0),[Te,Se]=E.useState(!0),[j,D]=E.useState(!0),[L,W]=E.useState(!0),[te,S]=E.useState(!0),[_,U]=E.useState(!0);E.useEffect(()=>{P();const ae=setInterval(P,5e3);return()=>clearInterval(ae)},[]);const P=async()=>{try{const ae=await fetch("/api/rooms");if(ae.ok){const Ne=await ae.json(),Ot=Cs(),jt=new Set(Ne.map(Ae=>Ae.id)),de=Ot.filter(Ae=>!jt.has(Ae.id));r([...Ne,...de])}else r(Cs())}catch{r(Cs())}},le=async ae=>{if(ae.preventDefault(),!T.trim())return;const Ot={id:"local-"+Math.random().toString(36).substring(2,9),name:T.trim(),description:M.trim()||"Menonton video seru bersama Alxena!",hostId:n.id,coHosts:[],settings:{maxUsers:oe,isPublic:K,password:Q,emoji:J,color:$,background:"pink-gradient",allowChat:I,allowVoice:Te,allowCamera:j,allowScreenShare:!0,allowPlaylist:L,allowSkip:te,allowUpload:_},users:[],playlist:[],currentVideoId:null,playbackState:{isPlaying:!1,currentTime:0,speed:1,lastUpdated:Date.now()},polls:[]};try{const jt=await fetch("/api/rooms",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:T.trim(),description:M.trim(),hostId:n.id,hostName:n.username,hostAvatar:n.avatar,settings:{maxUsers:oe,isPublic:K,password:Q,emoji:J,color:$,allowChat:I,allowVoice:Te,allowCamera:j,allowPlaylist:L,allowSkip:te,allowUpload:_}})});if(jt.ok){const de=await jt.json();p(!1),i(`/room/${de.id}`);return}}catch{}sn(Ot),p(!1),i(`/room/${Ot.id}`)},he=ae=>{ae.preventDefault(),y.trim()&&i(`/room/${y.trim()}`)},xe=l.filter(ae=>ae.name.toLowerCase().includes(d.toLowerCase())||ae.description.toLowerCase().includes(d.toLowerCase()));return u.jsx("div",{className:"pink-gradient min-h-screen px-4 py-8",children:u.jsxs("div",{className:"max-w-7xl mx-auto space-y-8",children:[u.jsxs("div",{className:"p-6 md:p-8 bg-gradient-to-r from-pink-500/80 via-rose-400/80 to-purple-600/60 backdrop-blur-md rounded-3xl text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 border border-white/20",children:[u.jsxs("div",{className:"space-y-2",children:[u.jsx("span",{className:"text-xs bg-white/20 px-3 py-1 rounded-full font-bold",children:"🎉 Halo Nontoners!"}),u.jsxs("h1",{className:"text-2xl md:text-3xl font-black",children:["Selamat datang kembali, ",n.username,"! ",n.avatar]}),u.jsxs("p",{className:"text-xs text-white/80 max-w-xl font-medium leading-relaxed",children:["Kumpulkan teman-teman Anda, buat atau pilih salah satu ruangan watch party di bawah, dan bersiaplah menikmati waktu luang bersama. Level Anda: ",u.jsxs("span",{className:"font-bold underline",children:["Level ",n.level]}),"!"]})]}),u.jsxs("div",{className:"flex gap-3 shrink-0",children:[u.jsxs("button",{onClick:()=>p(!0),className:"px-6 py-3.5 rounded-2xl bg-white text-pink-600 font-bold text-xs shadow-md hover:scale-103 transition-transform active:scale-97 flex items-center gap-1.5",children:[u.jsx(Cn,{className:"w-4 h-4"})," Buat Ruangan"]}),u.jsxs("button",{onClick:()=>g(!0),className:"px-6 py-3.5 rounded-2xl bg-pink-600/30 text-white font-bold text-xs border border-white/20 hover:bg-pink-600/40 transition-colors flex items-center gap-1.5",children:[u.jsx(lc,{className:"w-4 h-4"})," Gabung via ID"]})]})]}),u.jsxs("div",{className:"grid lg:grid-cols-3 gap-8",children:[u.jsxs("div",{className:"lg:col-span-2 space-y-6",children:[u.jsxs("div",{className:"flex flex-col sm:flex-row sm:items-center justify-between gap-4",children:[u.jsxs("div",{children:[u.jsxs("h2",{className:"text-xl font-black text-gray-800 dark:text-gray-100 flex items-center gap-1.5",children:[u.jsx(Pt,{className:"w-5 h-5 text-pink-500"})," Ruangan Aktif Terbuka"]}),u.jsx("p",{className:"text-xs text-gray-400 font-medium",children:"Bergabung langsung ke salah satu watch party publik."})]}),u.jsxs("div",{className:"relative w-full sm:w-64",children:[u.jsx(w2,{className:"absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-pink-400"}),u.jsx("input",{type:"text",value:d,onChange:ae=>f(ae.target.value),placeholder:"Cari nama ruangan...",className:"w-full bg-white/70 dark:bg-gray-900/60 border border-pink-100/60 dark:border-gray-800 text-xs rounded-2xl pl-10 pr-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-pink-400"})]})]}),xe.length===0?u.jsxs("div",{className:"p-12 text-center bg-white/40 dark:bg-black/10 rounded-3xl border border-pink-100/30",children:[u.jsx(Pt,{className:"w-10 h-10 text-pink-400 mx-auto mb-2"}),u.jsx("p",{className:"text-sm font-bold text-gray-600 dark:text-gray-300",children:"Belum ada ruangan aktif."}),u.jsx("p",{className:"text-xs text-gray-400",children:"Jadilah pionir dengan membuat ruangan watch party pertama Anda!"})]}):u.jsx("div",{className:"grid sm:grid-cols-2 gap-4",children:xe.map(ae=>u.jsxs("div",{onClick:()=>i(`/room/${ae.id}`),className:"p-5 bg-white/80 dark:bg-gray-950/60 border border-pink-100/50 dark:border-pink-950/20 hover:border-pink-400 dark:hover:border-pink-600 rounded-3xl shadow-sm hover:shadow-md hover:scale-102 active:scale-99 transition-all cursor-pointer flex flex-col justify-between gap-4",children:[u.jsxs("div",{children:[u.jsxs("div",{className:"flex items-center justify-between mb-3",children:[u.jsx("span",{className:"text-2xl",children:ae.settings.emoji}),u.jsxs("div",{className:"flex items-center gap-1 bg-pink-50 dark:bg-pink-950/20 px-2 py-0.5 rounded-full text-[10px] text-pink-600 dark:text-pink-400 font-bold border border-pink-100/50",children:[u.jsx(td,{className:"w-3.5 h-3.5"}),u.jsxs("span",{children:[ae.users.length,"/",ae.settings.maxUsers," online"]})]})]}),u.jsx("h3",{className:"font-bold text-sm text-gray-800 dark:text-gray-100 line-clamp-1",children:ae.name}),u.jsx("p",{className:"text-[11px] text-gray-400 dark:text-gray-500 line-clamp-2 mt-1 leading-relaxed",children:ae.description})]}),u.jsxs("div",{className:"flex items-center justify-between border-t border-pink-100/30 pt-3 text-[10px]",children:[u.jsxs("span",{className:"text-gray-400 font-medium",children:["Host: ",u.jsx("strong",{className:"text-pink-500",children:ae.id==="lounge-cute"||ae.id==="study-lofi"?"Alxena Official":"User"})]}),u.jsxs("span",{className:"text-pink-600 font-bold flex items-center gap-0.5",children:["Gabung ",u.jsx(xv,{className:"w-3.5 h-3.5"})]})]})]},ae.id))})]}),u.jsxs("div",{className:"space-y-6",children:[u.jsxs("div",{className:"p-5 bg-white/60 dark:bg-gray-950/40 border border-pink-100/30 dark:border-pink-950/20 rounded-3xl space-y-4",children:[u.jsxs("h3",{className:"font-bold text-xs text-gray-800 dark:text-gray-100 uppercase tracking-wider flex items-center gap-1.5",children:[u.jsx(Sg,{className:"w-4 h-4 text-pink-500"})," Aksi Cepat"]}),u.jsxs("div",{className:"grid grid-cols-2 gap-3",children:[u.jsxs("button",{onClick:()=>p(!0),className:"p-3 bg-pink-50 hover:bg-pink-100/80 text-pink-600 rounded-2xl flex flex-col items-center gap-1 text-xs font-bold border border-pink-100",children:[u.jsx(Cn,{className:"w-5 h-5"})," Buat Ruang"]}),u.jsxs("button",{onClick:()=>g(!0),className:"p-3 bg-purple-50 hover:bg-purple-100/80 text-purple-600 rounded-2xl flex flex-col items-center gap-1 text-xs font-bold border border-purple-100",children:[u.jsx(lc,{className:"w-5 h-5"})," Gabung Link"]})]})]}),u.jsxs("div",{className:"p-5 bg-white/60 dark:bg-gray-950/40 border border-pink-100/30 dark:border-pink-950/20 rounded-3xl space-y-4",children:[u.jsxs("h3",{className:"font-bold text-xs text-gray-800 dark:text-gray-100 uppercase tracking-wider flex items-center gap-1.5",children:[u.jsx(aa,{className:"w-4 h-4 text-pink-500 animate-float"})," Koleksi Lencana (",n.badges.length,")"]}),u.jsx("div",{className:"flex gap-2 flex-wrap",children:n.badges.map((ae,Ne)=>u.jsxs("span",{className:"bg-gradient-to-r from-pink-500 to-rose-400 text-white text-[9px] font-bold px-2.5 py-1 rounded-full shadow-sm",children:["🏆 ",ae]},Ne))}),u.jsx("div",{className:"space-y-2 pt-2 border-t border-pink-100/30",children:n.achievements.map(ae=>u.jsxs("div",{className:"flex gap-2 p-2 bg-white/30 rounded-xl border border-white/50",children:[u.jsx("span",{className:"text-xl shrink-0",children:ae.icon}),u.jsxs("div",{children:[u.jsx("h4",{className:"text-[10px] font-bold text-gray-700",children:ae.title}),u.jsx("p",{className:"text-[9px] text-gray-400",children:ae.description})]})]},ae.id))})]}),u.jsxs("div",{className:"p-5 bg-white/60 dark:bg-gray-950/40 border border-pink-100/30 dark:border-pink-950/20 rounded-3xl space-y-3",children:[u.jsx("h3",{className:"font-bold text-xs text-gray-800 dark:text-gray-100 uppercase tracking-wider",children:"Teman Online (Simulasi)"}),u.jsx("div",{className:"space-y-2",children:[{name:"Yuki ✨",status:"Sedang menonton Lounge Alxena 🌸",avatar:"🐰"},{name:"Kenzo 🎧",status:"Selesai lofi study session",avatar:"🦊"}].map((ae,Ne)=>u.jsxs("div",{className:"flex items-center justify-between p-2 rounded-2xl hover:bg-pink-100/10",children:[u.jsxs("div",{className:"flex items-center gap-2",children:[u.jsx("span",{className:"text-lg",children:ae.avatar}),u.jsxs("div",{children:[u.jsx("h4",{className:"text-[10px] font-bold text-gray-700",children:ae.name}),u.jsx("p",{className:"text-[8px] text-gray-400",children:ae.status})]})]}),u.jsx("span",{className:"w-1.5 h-1.5 bg-green-500 rounded-full"})]},Ne))})]})]})]}),h&&u.jsx("div",{className:"fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 z-50 overflow-y-auto",children:u.jsxs("div",{className:"bg-white dark:bg-gray-950 rounded-3xl max-w-lg w-full p-6 md:p-8 border border-pink-100 dark:border-pink-950/30 space-y-6 shadow-2xl relative animate-fade",children:[u.jsxs("div",{className:"text-center",children:[u.jsxs("h2",{className:"text-xl font-black text-gray-800 dark:text-gray-100 flex items-center justify-center gap-1.5",children:[u.jsx(Cn,{className:"w-5 h-5 text-pink-500"})," Pengaturan Ruangan Baru"]}),u.jsx("p",{className:"text-xs text-gray-400",children:"Sesuaikan watch party Anda semaksimal mungkin."})]}),u.jsxs("form",{onSubmit:le,className:"space-y-4 max-h-[70vh] overflow-y-auto pr-2",children:[u.jsxs("div",{className:"space-y-1",children:[u.jsx("label",{className:"text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1",children:"Nama Ruangan"}),u.jsx("input",{type:"text",required:!0,value:T,onChange:ae=>V(ae.target.value),placeholder:"Misal: Nobar Anime Akhir Pekan 🍿",className:"w-full bg-pink-50/50 dark:bg-black/10 border border-pink-100 dark:border-gray-800 text-xs rounded-xl px-3.5 py-2.5 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-1 focus:ring-pink-400"})]}),u.jsxs("div",{className:"space-y-1",children:[u.jsx("label",{className:"text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1",children:"Deskripsi Ruangan"}),u.jsx("textarea",{value:M,onChange:ae=>H(ae.target.value),placeholder:"Tulis apa yang akan ditonton atau peraturan santai di sini...",className:"w-full bg-pink-50/50 dark:bg-black/10 border border-pink-100 dark:border-gray-800 text-xs rounded-xl px-3.5 py-2.5 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-1 focus:ring-pink-400",rows:2})]}),u.jsxs("div",{className:"grid grid-cols-2 gap-4",children:[u.jsxs("div",{className:"space-y-1",children:[u.jsx("label",{className:"text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1",children:"Password (Opsional)"}),u.jsx("input",{type:"password",value:Q,onChange:ae=>q(ae.target.value),placeholder:"Kosongkan jika publik",className:"w-full bg-pink-50/50 dark:bg-black/10 border border-pink-100 dark:border-gray-800 text-xs rounded-xl px-3.5 py-2.5 text-gray-700 dark:text-gray-200 focus:outline-none"})]}),u.jsxs("div",{className:"space-y-1",children:[u.jsx("label",{className:"text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1",children:"Pilih Emoji Ruangan"}),u.jsx("div",{className:"flex gap-1 bg-pink-50/50 p-1 rounded-xl border border-pink-100",children:["🌸","🍿","🎤","📚","🎮","🌟"].map(ae=>u.jsx("button",{type:"button",onClick:()=>Z(ae),className:`w-8 h-8 rounded-lg flex items-center justify-center text-sm ${J===ae?"bg-pink-500 text-white":"hover:bg-pink-100"}`,children:ae},ae))})]})]}),u.jsxs("div",{className:"space-y-2 border-t border-pink-100/30 pt-3",children:[u.jsx("h4",{className:"text-[10px] font-bold text-gray-400 uppercase tracking-wider",children:"Perizinan Pengguna"}),u.jsx("div",{className:"grid grid-cols-2 gap-2",children:[{label:"Bolehkan Obrolan Chat",val:I,set:je,icon:u.jsx(Dr,{className:"w-3.5 h-3.5"})},{label:"Bolehkan Voice Chat",val:Te,set:Se,icon:u.jsx(ad,{className:"w-3.5 h-3.5"})},{label:"Bolehkan Kamera Video",val:j,set:D,icon:u.jsx(Ng,{className:"w-3.5 h-3.5"})},{label:"Bolehkan Upload File",val:_,set:U,icon:u.jsx(Pt,{className:"w-3.5 h-3.5"})}].map((ae,Ne)=>u.jsxs("button",{type:"button",onClick:()=>ae.set(!ae.val),className:`p-2 rounded-xl text-[10px] font-semibold border flex items-center gap-1.5 transition-colors ${ae.val?"bg-pink-50 text-pink-600 border-pink-200":"bg-gray-50 border-gray-100 text-gray-400"}`,children:[ae.icon,u.jsx("span",{children:ae.label})]},Ne))})]}),u.jsxs("div",{className:"flex justify-end gap-2 pt-4",children:[u.jsx("button",{type:"button",onClick:()=>p(!1),className:"px-4 py-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 text-gray-600 dark:text-gray-300 rounded-2xl text-xs font-bold",children:"Batalkan"}),u.jsx("button",{type:"submit",className:"px-6 py-2.5 bg-pink-500 text-white rounded-2xl text-xs font-bold hover:bg-pink-600 shadow-md shadow-pink-100",children:"Buat Sekarang"})]})]})]})}),x&&u.jsx("div",{className:"fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 z-50",children:u.jsxs("div",{className:"bg-white dark:bg-gray-950 rounded-3xl max-w-sm w-full p-6 border border-pink-100 dark:border-pink-950/30 space-y-5 shadow-2xl relative animate-fade",children:[u.jsxs("div",{className:"text-center",children:[u.jsxs("h2",{className:"text-base font-black text-gray-800 dark:text-gray-100 flex items-center justify-center gap-1.5",children:[u.jsx(lc,{className:"w-5 h-5 text-pink-500 animate-spin-slow"})," Gabung via ID Ruangan"]}),u.jsx("p",{className:"text-[11px] text-gray-400",children:"Minta ID ruangan dari host nobar Anda."})]}),u.jsxs("form",{onSubmit:he,className:"space-y-4",children:[u.jsxs("div",{className:"space-y-1",children:[u.jsx("label",{className:"text-[10px] font-bold text-gray-400 uppercase tracking-wider",children:"Masukkan ID Ruangan"}),u.jsx("input",{type:"text",required:!0,value:y,onChange:ae=>v(ae.target.value),placeholder:"lounge-cute",className:"w-full bg-pink-50/50 dark:bg-black/10 border border-pink-100 dark:border-gray-800 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none"})]}),u.jsxs("div",{className:"flex gap-2",children:[u.jsx("button",{type:"button",onClick:()=>g(!1),className:"flex-1 py-2 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 text-gray-600 text-xs font-bold",children:"Batal"}),u.jsx("button",{type:"submit",className:"flex-1 py-2 bg-pink-500 text-white rounded-xl text-xs font-bold hover:bg-pink-600",children:"Masuk Ruang"})]})]})]})})]})})}const f4="modulepreload",h4=function(n){return"/"+n},fg={},m4=function(i,l,r){let d=Promise.resolve();if(l&&l.length>0){let h=function(g){return Promise.all(g.map(y=>Promise.resolve(y).then(v=>({status:"fulfilled",value:v}),v=>({status:"rejected",reason:v}))))};document.getElementsByTagName("link");const p=document.querySelector("meta[property=csp-nonce]"),x=(p==null?void 0:p.nonce)||(p==null?void 0:p.getAttribute("nonce"));d=h(l.map(g=>{if(g=h4(g),g in fg)return;fg[g]=!0;const y=g.endsWith(".css"),v=y?'[rel="stylesheet"]':"";if(document.querySelector(`link[href="${g}"]${v}`))return;const k=document.createElement("link");if(k.rel=y?"stylesheet":f4,y||(k.as="script"),k.crossOrigin="",k.href=g,x&&k.setAttribute("nonce",x),document.head.appendChild(k),y)return new Promise((A,T)=>{k.addEventListener("load",A),k.addEventListener("error",()=>T(new Error(`Unable to preload CSS for ${g}`)))})}))}function f(h){const p=new Event("vite:preloadError",{cancelable:!0});if(p.payload=h,window.dispatchEvent(p),!p.defaultPrevented)throw h}return d.then(h=>{for(const p of h||[])p.status==="rejected"&&f(p.reason);return i().catch(f)})};/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- */function p4({onTogglePlay:n,onToggleMute:i,onToggleFullscreen:l}){E.useEffect(()=>{const r=d=>{const f=document.activeElement;if(!(f&&(f.tagName==="INPUT"||f.tagName==="TEXTAREA"||f.hasAttribute("contenteditable")||f.isContentEditable)))switch(d.key.toLowerCase()){case" ":case"spacebar":n&&(d.preventDefault(),n());break;case"m":i&&(d.preventDefault(),i());break;case"f":l&&(d.preventDefault(),l());break}};return window.addEventListener("keydown",r),()=>{window.removeEventListener("keydown",r)}},[n,i,l])}function AWPYouTube({videoId,isPlaying,currentTime,speed,isHost,onSync}){
-  const frame=E.useRef(null),ready=E.useRef(false),applying=E.useRef(false),lastTime=E.useRef(-1),lastPlaying=E.useRef(null),lastReport=E.useRef(0);
-  const props=E.useRef({isPlaying,currentTime,speed,isHost,onSync});
-  props.current={isPlaying,currentTime,speed,isHost,onSync};
-
-  const send=E.useCallback((func,args=[])=>{
-    const el=frame.current;
-    if(!el||!el.contentWindow)return;
-    try{
-      el.contentWindow.postMessage(JSON.stringify({event:"command",func,args,id:"alxena-youtube",channel:"alxena"}),"https://www.youtube.com");
-    }catch(e){}
-  },[]);
-
-  const applyState=E.useCallback(()=>{
-    if(!ready.current)return;
-    const {isPlaying:playing,currentTime:time,speed:rate}=props.current;
-    const target=Math.max(0,Number(time||0));
-
-    applying.current=true;
-    if(lastTime.current<0||Math.abs(lastTime.current-target)>1.5){
-      send("seekTo",[target,true]);
-      lastTime.current=target;
-    }
-    send("setPlaybackRate",[Number(rate||1)]);
-    if(playing)send("playVideo",[]);
-    else send("pauseVideo",[]);
-    setTimeout(()=>{applying.current=false},550);
-  },[send]);
-
-  E.useEffect(()=>{
-    let dead=false;
-    ready.current=false;
-    lastTime.current=-1;
-    lastPlaying.current=null;
-    lastReport.current=0;
-
-    const onMessage=ev=>{
-      if(dead||ev.origin!=="https://www.youtube.com")return;
-      let data=ev.data;
-      if(typeof data!=="string")return;
-      try{data=JSON.parse(data)}catch{return}
-      if(!data||!data.event)return;
-
-      if(data.event==="onReady"){
-        ready.current=true;
-        applyState();
-        return;
-      }
-
-      if(data.event==="onError"){
-        console.error("[AWP YouTube] ERROR",data.info,videoId);
-        window.__ALXENA_YT_ERROR=String(data.info);
-        return;
-      }
-
-      if(data.event==="onStateChange"&&typeof data.info==="number"){
-        if(!props.current.isHost||applying.current)return;
-        const playing=data.info===1;
-        if(data.info===1||data.info===2||data.info===0){
-          const now=Number(lastTime.current>=0?lastTime.current:props.current.currentTime||0);
-          if(lastPlaying.current!==playing){
-            lastPlaying.current=playing;
-            props.current.onSync(playing,now,Number(props.current.speed||1));
-          }
-        }
-        return;
-      }
-
-      if(data.event!=="infoDelivery")return;
-      const info=data.info;
-      if(!info||typeof info!=="object")return;
-      const now=Number(info.currentTime);
-      const state=Number(info.playerState);
-      const rate=Number(info.playbackRate||props.current.speed||1);
-      if(Number.isFinite(now))lastTime.current=now;
-
-      if(props.current.isHost&&!applying.current&&Number.isFinite(now)){
-        const playing=state===1;
-        const changed=lastPlaying.current!==playing;
-        const due=Date.now()-lastReport.current>1800;
-        if(changed||due){
-          lastPlaying.current=playing;
-          lastReport.current=Date.now();
-          props.current.onSync(playing,now,rate);
-        }
-      }
-    };
-
-    window.addEventListener("message",onMessage);
-
-    const el=frame.current;
-    const announce=()=>{
-      if(!el||!el.contentWindow)return;
-      try{
-        el.contentWindow.postMessage(JSON.stringify({event:"listening",id:"alxena-youtube",channel:"alxena"}),"https://www.youtube.com");
-        el.contentWindow.postMessage(JSON.stringify({event:"command",func:"addEventListener",args:["onStateChange"],id:"alxena-youtube",channel:"alxena"}),"https://www.youtube.com");
-      }catch(e){}
-    };
-    if(el)el.addEventListener("load",announce);
-    const timers=[250,600,1200,2200,4000].map(ms=>setTimeout(announce,ms));
-
-    return()=>{
-      dead=true;
-      window.removeEventListener("message",onMessage);
-      if(el)el.removeEventListener("load",announce);
-      timers.forEach(clearTimeout);
-    };
-  },[videoId,isHost,applyState]);
-
-  E.useEffect(()=>{
-    applyState();
-  },[isPlaying,currentTime,speed,applyState]);
-
-  const src=`https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&widget_referrer=${encodeURIComponent(window.location.origin)}&playsinline=1&rel=0&controls=${isHost?1:0}&disablekb=${isHost?0:1}&autoplay=0&start=${Math.floor(Math.max(0,Number(currentTime||0)))}`;
+ */function p4({onTogglePlay:n,onToggleMute:i,onToggleFullscreen:l}){E.useEffect(()=>{const r=d=>{const f=document.activeElement;if(!(f&&(f.tagName==="INPUT"||f.tagName==="TEXTAREA"||f.hasAttribute("contenteditable")||f.isContentEditable)))switch(d.key.toLowerCase()){case" ":case"spacebar":n&&(d.preventDefault(),n());break;case"m":i&&(d.preventDefault(),i());break;case"f":l&&(d.preventDefault(),l());break}};return window.addEventListener("keydown",r),()=>{window.removeEventListener("keydown",r)}},[n,i,l])}function AWPYouTube({videoId,currentTime,isHost}){
+  const src=`https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&rel=0&controls=${isHost?1:0}&start=${Math.floor(Math.max(0,Number(currentTime||0)))}`;
 
   return u.jsx("iframe",{
-    ref:frame,
-    key:videoId,
     className:"w-full h-full absolute inset-0 border-0",
-    src,
+    src:src,
     title:"Alxena Watch Party YouTube",
     allow:"autoplay; encrypted-media; picture-in-picture; fullscreen; web-share",
-    allowFullScreen:!0
+    allowFullScreen:true
   });
 }
 
