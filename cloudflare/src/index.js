@@ -212,6 +212,50 @@ export class AWPState {
       return response({ ok: true, user: safeUser });
     }
 
+    // Room collection endpoints
+    if (path === "/api/rooms") {
+      if (method === "GET") {
+        await this.save(data);
+        return response(
+          Object.values(data.rooms || {}).map(room => publicRoom(room))
+        );
+      }
+
+      if (method === "POST") {
+        const body = await json(request);
+
+        const newRoomId =
+          body.id ||
+          crypto.randomUUID().replaceAll("-", "").slice(0, 8);
+
+        const roomData = {
+          ...body,
+          ownerId: body.ownerId || body.hostId || null,
+          hostId: body.hostId || body.ownerId || null
+        };
+
+        data.rooms[newRoomId] = defaultRoom(newRoomId, roomData);
+
+        // Creator langsung menjadi member/host
+        if (body.hostId) {
+          data.rooms[newRoomId].users = [{
+            id: body.hostId,
+            username: body.hostName || "Host",
+            avatar: body.hostAvatar || "🐰",
+            status: "Online"
+          }];
+        }
+
+        await this.save(data);
+
+        return response({
+          ok: true,
+          id: newRoomId,
+          room: data.rooms[newRoomId]
+        });
+      }
+    }
+
     const roomMatch = path.match(/^\/api\/rooms\/([^/]+)(?:\/(.*))?$/);
 
     if (roomMatch) {
