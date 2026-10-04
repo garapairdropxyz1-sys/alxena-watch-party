@@ -489,6 +489,9 @@ Error generating stack: `+s.message+`
             onError:function(ev){
               console.error("[AWP YouTube] ERROR",ev.data,videoId);
               window.__ALXENA_YT_ERROR=String(ev.data);
+              try{
+                alert("ALXENA YouTube Error\nKode: "+ev.data+"\nVideo: "+videoId);
+              }catch(e){}
             },
             onStateChange:function(ev){
               if(dead||applying.current||!isHost)return;
